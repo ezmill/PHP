@@ -12,7 +12,6 @@ var BLACKBOX = new Blackbox();
 BLACKBOX.setLastFilename();
 BLACKBOX.setCurrentDesigner();
 // init();
-animate();
 
 function init(){
 	scene = new THREE.Scene();
@@ -50,6 +49,8 @@ function init(){
 	document.addEventListener("mousedown", onMouseDown);
 	document.addEventListener("mouseup", onMouseUp);
     document.addEventListener( 'keydown', function(){screenshot(renderer)}, false );
+
+    animate();
 
 }
 
