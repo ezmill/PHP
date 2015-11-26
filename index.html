@@ -1,0 +1,80 @@
+<html>
+<head>
+<script>
+var USER_COUNT;
+var IMG;
+function getUserCount() {
+  var xmlhttp;
+  console.log("0");
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("userCount").innerHTML= "User count: " + xmlhttp.responseText;
+      USER_COUNT = xmlhttp.responseText;
+      // IMG = 10*Math.floor(USER_COUNT%12)/12;
+      IMG = Math.ceil((USER_COUNT/10)%12);
+      // console.log(IMG);
+      document.getElementById("imageName").innerHTML= "Image name: " + IMG + "_" + Date.now() + ".jpg";
+      // document.getElementById("imageName").innerHTML= "Image name: " + IMG + "_" + timeStamp() + ".jpg";
+    }
+  }
+  xmlhttp.open("POST","increaseUserCount.php",true);
+  xmlhttp.send();
+}
+function timeStamp() {
+  var now = new Date();
+  var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
+  var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
+  var suffix = ( time[0] < 12 ) ? "AM" : "PM";
+  time[0] = ( time[0] < 12 ) ? time[0] : time[0] - 12;
+  time[0] = time[0] || 12;
+  for ( var i = 1; i < 3; i++ ) {
+    if ( time[i] < 10 ) {
+      time[i] = "0" + time[i];
+    }
+  }
+  return date.join("_") + "_" + time.join("_");
+}
+function getLatestFilename(){
+  var xmlhttp;
+  console.log("1");
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      console.log(xmlhttp.responseText);
+    }
+  }
+  xmlhttp.open("POST","latestFile.php",true);
+  xmlhttp.send();
+}
+</script>
+</head>
+<body>
+
+<div id="userCount">
+</div>
+<div id="imageName">
+  
+</div>
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
+
+<script type="text/javascript">
+  getUserCount();
+  getLatestFilename();
+</script>
+</body>
+</html>
