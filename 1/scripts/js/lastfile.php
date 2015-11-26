@@ -1,6 +1,5 @@
 <?php
-// $path = "../../uploads/"; 
-$path = "http://ezmill.github.io/PHP/1/uploads"; 
+$path = "../../uploads/"; 
 
 $latest_ctime = 0;
 $latest_filename = '';    
