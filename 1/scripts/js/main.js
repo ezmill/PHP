@@ -36,10 +36,10 @@ function init(){
         // customShaders.blurShader,
         // paintFlow,
         // customShaders2.reposShader,
-       	customShaders.flowShader,
+       	customShaders.blurShader,
         customShaders.diffShader, 
-        // customShaders2.warp2,
-        customShaders2.blurShader,
+        customShaders2.warp2,
+        // customShaders2.blurShader,
         customShaders.passShader
     ];
     fbMaterial = new FeedbackMaterial(renderer, scene, camera, texture, shaders);  

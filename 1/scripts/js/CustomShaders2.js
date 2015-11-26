@@ -268,7 +268,7 @@ var CustomShaders = function(){
 		    "	float a = atan(p.y, p.x);",
 		    "	vec3 col = texture2D(texture, vUv).rgb;",
 		    "	vec4 alpha = texture2D(alpha, vUv);",
-		    "	if(r < r2 && (dot(alpha.rgb, vec3(1.0))/3.0) < 0.1){",
+		    "	if(r < r2){",
 		    "		float f = smoothstep(r2, r2 - 0.5, r);",
 		    "		col = mix( col, col2, f);",
 		    "	}",
@@ -790,9 +790,9 @@ var CustomShaders = function(){
 			// "    gl_FragColor = repos;",
 			"  vec4 tex0 = repos;",
 			"  vec3 hsv = rgb2hsv(tex0.rgb);",
-			"  //hsv.r += 0.01;",
+			"  hsv.r += 0.1;",
 			"  //hsv.r = mod(hsv.r, 1.0);",
-			"  //hsv.g *= 1.001;",
+			"  hsv.g *= 1.1;",
 			"  // hsv.g = mod(hsv.g, 1.0);",
 			"  vec3 rgb = hsv2rgb(hsv); ",
 
@@ -808,7 +808,7 @@ var CustomShaders = function(){
 		    "		float f = smoothstep(r2, r2 - 0.5, r);",
 		    "		col = mix( col, rgb, f);",
 		    "	}",
-			"	gl_FragColor = vec4(rgb,1.0);",
+			"	gl_FragColor = vec4(col,1.0);",
 			"}"
 	    ].join("\n")
 
