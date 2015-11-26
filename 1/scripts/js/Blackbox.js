@@ -4,7 +4,7 @@ var Blackbox = function() {
 	this.currentDesiger;
     this.setLastFilename = function() {
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "scripts/js/lastfile.php"
         }).done(function(o) {
         	console.log(o);
@@ -16,7 +16,7 @@ var Blackbox = function() {
     }
     this.setCurrentDesigner = function(){
     	$.ajax({
-    	    type: "GET",
+    	    type: "POST",
     	    url: "scripts/js/increaseUserCount.php"
     	}).done(function(o) {
     		// console.log(o);
